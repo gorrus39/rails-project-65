@@ -39,6 +39,6 @@ jobs:
 
       - name: slim-lint-check
         run: bin/rails lint:slim
-
+      
       - name: rails tests
         run: bin/rails test
