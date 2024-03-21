@@ -83,3 +83,5 @@ end
 gem 'colorize', '~> 1.1'
 
 gem 'slim_lint', '~> 0.26.0'
+
+gem "dotenv", "~> 3.1"
