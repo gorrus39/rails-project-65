@@ -49,10 +49,10 @@ gem 'bootsnap', require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
-group :development, :test do
-  # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem 'debug', platforms: %i[mri windows]
-end
+# group :development, :test do
+#   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
+#   gem 'debug', platforms: %i[mri windows]
+# end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
@@ -63,9 +63,6 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
-  gem 'rubocop'
-
-  gem 'rubocop-rails'
 
   gem 'slim-rails'
 end
@@ -73,6 +70,7 @@ end
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'capybara'
+  gem 'minitest-power_assert', '~> 0.3.1'
   gem 'selenium-webdriver'
 end
 
@@ -80,8 +78,12 @@ group :production do
   gem 'pg', '~> 1.5'
 end
 
+gem 'rubocop'
+
 gem 'colorize', '~> 1.1'
+
+gem 'rubocop-rails'
 
 gem 'slim_lint', '~> 0.26.0'
 
-gem "dotenv", "~> 3.1"
+gem 'dotenv', '~> 3.1'

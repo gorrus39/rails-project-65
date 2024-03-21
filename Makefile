@@ -8,8 +8,6 @@ install:   prepare_dependencies prepare_db prepare_assets lint_rubocop lint_slim
 
 for_deploy_on_commit: prepare_dependencies mirgate_db prepare_assets lint_rubocop lint_slim test
 
-for_git_actions_checks: lint_rubocop lint_slim test
-
 prepare_dependencies:
 	bundle install
 
