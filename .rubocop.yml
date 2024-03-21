@@ -1,0 +1,15 @@
+require: rubocop-rails
+
+AllCops:
+  TargetRubyVersion: 3.2.2
+  NewCops: enable
+
+Style/Documentation:
+  Exclude:
+    - app/**/*
+    - config/**/*
+    - test/**/*
+
+Metrics/BlockLength:
+  Exclude:
+    - config/environments/*
