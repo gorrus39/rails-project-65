@@ -3,3 +3,4 @@
 set -o errexi
 
 make install
+# make on_commit
