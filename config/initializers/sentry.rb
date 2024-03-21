@@ -17,4 +17,4 @@ Sentry.init do |config|
 end
 
 # example for testing errors.
-# Sentry.capture_message('test message')
+Sentry.capture_message('test message')
