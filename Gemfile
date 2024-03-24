@@ -86,8 +86,12 @@ gem 'rubocop-rails'
 
 gem 'slim_lint', '~> 0.26.0'
 
-gem 'dotenv', '~> 3.1'
+gem 'sentry-ruby', '~> 5.17'
 
-gem "sentry-ruby", "~> 5.17"
+gem 'sentry-rails', '~> 5.17'
 
-gem "sentry-rails", "~> 5.17"
+gem 'omniauth-github', '~> 2.0'
+
+gem 'omniauth-rails_csrf_protection', '~> 1.0'
+
+gem "dotenv-rails", "~> 3.1"
