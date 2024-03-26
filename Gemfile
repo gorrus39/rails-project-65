@@ -97,3 +97,9 @@ gem 'omniauth-rails_csrf_protection', '~> 1.0'
 gem 'dotenv-rails', '~> 3.1'
 
 gem 'faker', '~> 3.3'
+
+gem 'annotate', '~> 3.2'
+
+gem 'simple_form', '~> 5.3'
+
+gem 'active_storage_validations', '~> 1.1'

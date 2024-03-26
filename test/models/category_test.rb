@@ -1,16 +1,19 @@
 # == Schema Information
 #
-# Table name: users
+# Table name: categories
 #
 #  id         :integer          not null, primary key
-#  email      :string
-#  name       :string
+#  name       :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
+# Indexes
+#
+#  index_categories_on_name  (name) UNIQUE
+#
 require "test_helper"
 
-class UserTest < ActiveSupport::TestCase
+class Web::CategoryTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

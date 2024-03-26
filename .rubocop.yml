@@ -9,6 +9,7 @@ Style/Documentation:
     - app/**/*
     - config/**/*
     - test/**/*
+    - db/**/*
 
 Metrics/BlockLength:
   Exclude:

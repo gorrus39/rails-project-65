@@ -1,17 +1,18 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  root 'home#index'
-  # namespace :web do
-  #   get 'auth/request'
-  #   get 'auth/callback'
-  # end
-  post 'auth/log_out', to: 'web/auth#log_out', as: :auth_log_out
-  post 'auth/:provider', to: 'web/auth#request', as: :auth_request
-  get 'auth/:provider/callback', to: 'web/auth#callback', as: :callback_auth
+  root 'web/bulletins#index'
 
-  # get 'auth/:provider/callback', to: 'sessions#create'
-  # get '/login', to: 'sessions#new'
+  scope module: :web do
+    resources :categories
+    resources :bulletins
+  end
+
+  scope :auth do
+    post 'log_out', to: 'web/auth#log_out', as: :auth_log_out
+    post ':provider', to: 'web/auth#request', as: :auth_request
+    get ':provider/callback', to: 'web/auth#callback', as: :callback_auth
+  end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
