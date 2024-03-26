@@ -94,4 +94,6 @@ gem 'omniauth-github', '~> 2.0'
 
 gem 'omniauth-rails_csrf_protection', '~> 1.0'
 
-gem "dotenv-rails", "~> 3.1"
+gem 'dotenv-rails', '~> 3.1'
+
+gem 'faker', '~> 3.3'

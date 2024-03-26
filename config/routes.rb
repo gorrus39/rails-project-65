@@ -6,8 +6,9 @@ Rails.application.routes.draw do
   #   get 'auth/request'
   #   get 'auth/callback'
   # end
+  post 'auth/log_out', to: 'web/auth#log_out', as: :auth_log_out
   post 'auth/:provider', to: 'web/auth#request', as: :auth_request
-  get 'auth/:provider/callback', to: 'web/auth#callback', as: :callback_auths
+  get 'auth/:provider/callback', to: 'web/auth#callback', as: :callback_auth
 
   # get 'auth/:provider/callback', to: 'sessions#create'
   # get '/login', to: 'sessions#new'

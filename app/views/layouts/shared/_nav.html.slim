@@ -1,3 +1,7 @@
-= form_tag('/auth/github', method: 'post', data: { turbo: false }) do
-  button type='submit'
-   | Login with Git Hub
+- if current_user.present?
+  p = current_user.email
+  = button_to 'Log Out', auth_log_out_path, data: { turbo: false }
+- else
+  = form_tag('/auth/github', method: 'post', data: { turbo: false }) do
+    button type='submit'
+     | Login with Git Hub

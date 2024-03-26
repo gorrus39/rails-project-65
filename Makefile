@@ -4,7 +4,7 @@
 # в development режиме работает на sqlite 
 
 # первый запуск
-install:   prepare_dependencies prepare_db prepare_assets lint_rubocop lint_slim test
+install:   prepare_dependencies make_env_file prepare_db prepare_assets lint_rubocop lint_slim test
 
 on_commit: prepare_dependencies mirgate_db prepare_assets lint_rubocop lint_slim test
 
@@ -29,3 +29,7 @@ lint_slim:
 test:
 	bin/rails test
 
+make_env_file:
+	@if [ ! -f .env ]; then \
+		cp .env.example .env; \
+	fi
