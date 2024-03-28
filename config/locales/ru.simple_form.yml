@@ -1,0 +1,28 @@
+ru:
+  activerecord:
+    attributes:
+      bulletin:
+        title: Заголовок
+    models:
+      bulletin: объявление
+    attributes:
+      title: Заголовок   
+    errors:
+      models:
+        bulletin:
+          attributes:
+            title:
+              blank: не может быть пустым
+            description:
+              blank: не может быть пустым
+            category:
+              required: обязательна
+            image:
+              blank: обязательно
+  simple_form:
+    labels:
+      bulletin:
+        title: Заголовок
+        description: Описание
+        category: Категория
+        image: Фотография

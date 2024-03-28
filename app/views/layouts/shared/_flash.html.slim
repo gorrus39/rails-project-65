@@ -9,10 +9,8 @@
         = flash[:alert]
         button.btn-flash-close.btn-close
   javascript:
-    const closeFlashButtons = document.querySelectorAll('.btn-flash-close')
-    const flashContainer = document.querySelector('#flash-container')
-    closeFlashButtons.forEach((button)=>{
+    document.querySelectorAll('.btn-flash-close').forEach((button)=>{
       button.addEventListener('click', ()=>{
-        flashContainer.style.display = 'none'
+        document.querySelector('#flash-container').style.display = 'none'
       })
     })

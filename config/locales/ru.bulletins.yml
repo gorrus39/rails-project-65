@@ -10,3 +10,7 @@ ru:
         notice: Объявление успешно удалено
       index:
         title: Объявления
+      new:
+        add_bulletin: Добавить объявление
+      edit:
+        edit_bulletin: Обновить объявление
