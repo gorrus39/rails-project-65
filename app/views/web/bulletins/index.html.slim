@@ -1,9 +1,19 @@
-h1 Bulletins
-
-#bulletins
-  - @bulletins.each do |bulletin|
-    == render bulletin
-    p
-      = link_to "Show this bulletin", bulletin
-
-= link_to "New bulletin", new_bulletin_path
+.p-4.align-items-center.border.shadow.bg-white.rounded-3
+  .row
+    .p-3.p-lg-5.pt-lg-0
+      .mb-4
+        h2 = t('.title')
+        hr
+      .p-3.bg-light
+      .row.mt-2
+        - @bulletins.each do |bulletin|
+          .col-3.pt-2
+            .card.shadow-sm
+              - if bulletin.image_attachment
+                = image_tag(bulletin.image,
+                  height: 200,
+                  class: 'card-img-top',
+                  style: 'object-fit: cover;')
+              .card-body
+                = link_to(bulletin.title, bulletin)
+                / h6 class='card-subtitle mb-2 text-muted' = bulletin.created_at

@@ -1,7 +1,18 @@
-/ - if flash.any?
-/   .container.my-2
-/     - flash.each_value do |_type, msg|
-/       .alert.alert-info
-/         = msg
-
-/ <div class="container alert alert-info alert-dismissible fade show" role="alert">Успешно<button aria-label="Close" class="btn-close" data-bs-dismiss="alert" type="button"></button></div>
+- if flash.any?
+  #flash-container.container.my-2
+    - if flash[:notice].present?
+      .alert.alert-info.d-flex.justify-content-between
+        = flash[:notice]
+        button.btn-flash-close.btn-close
+    - if flash[:alert].present?
+      .alert.alert-danger.d-flex.justify-content-between
+        = flash[:alert]
+        button.btn-flash-close.btn-close
+  javascript:
+    const closeFlashButtons = document.querySelectorAll('.btn-flash-close')
+    const flashContainer = document.querySelector('#flash-container')
+    closeFlashButtons.forEach((button)=>{
+      button.addEventListener('click', ()=>{
+        flashContainer.style.display = 'none'
+      })
+    })

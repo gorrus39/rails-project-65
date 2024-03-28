@@ -21,8 +21,9 @@ module Web
       @bulletin.user = current_user
 
       if @bulletin.save
-        redirect_to bulletin_url(@bulletin), notice: 'Bulletin was successfully created.'
+        redirect_to bulletin_url(@bulletin), notice: t('.notice')
       else
+        flash[:alert] = t('.alert')
         render :new, status: :unprocessable_entity
       end
     end
@@ -31,7 +32,7 @@ module Web
     def update
       respond_to do |format|
         if @bulletin.update(bulletin_params)
-          format.html { redirect_to bulletin_url(@bulletin), notice: 'Bulletin was successfully updated.' }
+          format.html { redirect_to bulletin_url(@bulletin), notice: t('.notice') }
           format.json { render :show, status: :ok, location: @bulletin }
         else
           format.html { render :edit, status: :unprocessable_entity }
@@ -45,19 +46,17 @@ module Web
       @bulletin.destroy!
 
       respond_to do |format|
-        format.html { redirect_to bulletins_url, notice: 'Bulletin was successfully destroyed.' }
+        format.html { redirect_to bulletins_url, notice: t('.notice') }
         format.json { head :no_content }
       end
     end
 
     private
 
-    # Use callbacks to share common setup or constraints between actions.
     def set_bulletin
       @bulletin = Bulletin.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def bulletin_params
       params.require(:bulletin).permit(:title, :description, :category_id, :image)
     end
