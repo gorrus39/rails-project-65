@@ -9,3 +9,19 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+my_email = 'gorrus100@gmail.com'
+user = User.find_by(email: my_email)
+file_path = Rails.root.join('test/fixtures/files/man.jpg')
+
+if user
+  5.times do
+    bulletin = user.bulletins.build(
+      description: Faker::Lorem.paragraph,
+      title: Faker::Lorem.sentence(word_count: 3),
+      category: Category.all.sample
+    )
+    bulletin.image.attach(io: File.open(file_path), filename: 'filename.jpg')
+    bulletin.save!
+  end
+end

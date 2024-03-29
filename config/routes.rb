@@ -1,11 +1,19 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  root 'web/bulletins#index'
-
   scope module: :web do
-    resources :categories
-    resources :bulletins
+    scope module: :profile do
+      get 'profile', to: 'bulletins#index'
+      resources :bulletins, only: %i[new create edit update destroy]
+    end
+
+    namespace :admin do
+      root 'bulletins#under_moderation', to: 'bulletins#under_moderation'
+      # putch ''
+      resources :bulletins, only: %i[index]
+      # get 'bulletins', to: 'bulletins#index'
+      get 'categories', to: 'categories#index'
+    end
   end
 
   scope :auth do
@@ -13,6 +21,10 @@ Rails.application.routes.draw do
     post ':provider', to: 'web/auth#request', as: :auth_request
     get ':provider/callback', to: 'web/auth#callback', as: :callback_auth
   end
+
+  resources :categories
+  resources :bulletins, only: %i[show]
+  root 'web/bulletins#index'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

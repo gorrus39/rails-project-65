@@ -4,6 +4,7 @@
 #
 #  id          :integer          not null, primary key
 #  description :text             not null
+#  state       :string           default("draft")
 #  title       :string           not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
@@ -32,3 +33,4 @@ two:
   description: MyText
   user: two
   category: two
+

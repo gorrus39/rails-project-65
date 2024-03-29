@@ -1,0 +1,20 @@
+.row
+  = render 'web/admin/nav'
+  .col-md-9
+    h1.h2.mb-4 = t('.title')
+    .row.mt-2
+    table.table.table-borderless
+      thead
+        tr
+          th = t('.cell_name')
+          th = t('.cell_created_at')
+          th = t('.cell_actions')
+      tbody
+        - @bulletins.each do |bulletin|
+          tr
+            th = link_to bulletin.title, bulletin
+            th = bulletin.created_at
+            th
+            /   = link_to t('.publish_action'),
+            /   = link_to t('.publish_action'),
+            /   = link_to t('.publish_action'),

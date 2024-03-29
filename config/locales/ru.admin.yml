@@ -1,0 +1,13 @@
+ru:
+  web:
+    admin:
+      nav:
+        under_modatation: Объявления на модерации
+        all_bulletins: Все объявления
+        all_categories: Все категории
+      bulletins:
+        on_moderate:
+          title: Объявления на модерации
+          cell_name: Name
+          cell_created_at: Дата создания
+          cell_actions: Действия

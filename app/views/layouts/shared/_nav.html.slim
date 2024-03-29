@@ -9,7 +9,7 @@
           - if current_user.present?
             li.nav-item.me-2
               = link_to t('.my_bulletins'),
-                root_path,
+                profile_path,
                 class: 'nav-link text-dark'
             li.nav-item.me-2
               = link_to t('.add_bulletin'),
@@ -17,8 +17,11 @@
                 class: 'nav-link text-dark'
     ul.nav.nav-pills
       - if current_user.present?
-        li.nav-item.me-2
-          = link_to t('.admin_panel'), root_path, class: 'nav-link text-dark'
+        - if current_user&.admin?
+          li.nav-item.me-2
+            = link_to t('.admin_panel'),
+              admin_root_path,
+              class: 'nav-link text-dark'
         li.nav-item.me-2
           = button_to t('.log_out'),
             auth_log_out_path,

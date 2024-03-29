@@ -1,0 +1,22 @@
+.p-4.align-items-center.border.shadow.bg-white.rounded-3
+  .row
+    .p-3.p-lg-5.pt-lg-0
+      .mb-4
+        h2 = t('.title')
+        hr
+      = link_to t('.new_bulletin'), new_bulletin_path
+      .row.mt-2
+        table.table.table-borderless
+          thead
+            tr
+              th = t('.col.name')
+              th = t('.col.state')
+              th = t('.col.created_at')
+              th = t('.col.actions')
+          tbody
+            - @bulletins.each do |b|
+                tr
+                  td = b.title
+                  td = t(".state.#{b.state}")
+                  td = b.created_at
+                  td = "t('.col.actions')"
