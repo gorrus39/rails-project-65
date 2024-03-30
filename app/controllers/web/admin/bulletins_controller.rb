@@ -6,6 +6,10 @@ module Web
       def under_moderation
         @bulletins = Bulletin.under_moderation
       end
+
+      def index
+        @bulletins = Bulletin.all
+      end
     end
   end
 end

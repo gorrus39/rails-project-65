@@ -6,37 +6,37 @@ module Web
     after_action :verify_authorized, only: %i[show new create edit update to_moderate publish reject archive]
 
     def to_moderate
-      authorize @bulletine
+      authorize @bulletin
       @bulletin.to_moderate
       @bulletin.save
-      flash[:notice] = t('.notice.to_moderate')
+      flash[:notice] = t('.notice')
 
       redirect_to profile_path
     end
 
     def publish
-      authorize @bulletine
+      authorize @bulletin
       @bulletin.publish
       @bulletin.save
-      flash[:notice] = t('.notice.publish')
+      flash[:notice] = t('.notice')
 
       redirect_to profile_path
     end
 
     def reject
-      authorize @bulletine
+      authorize @bulletin
       @bulletin.reject
       @bulletin.save
-      flash[:notice] = t('.notice.reject')
+      flash[:notice] = t('.notice')
 
       redirect_to profile_path
     end
 
     def archive
-      authorize @bulletine
+      authorize @bulletin
       @bulletin.archive
       @bulletin.save
-      flash[:notice] = t('.notice.archive')
+      flash[:notice] = t('.notice')
 
       redirect_to profile_path
     end

@@ -1,21 +1,31 @@
 / ещё нужна проверка с какого пути обращение идёт, чтоб не давать возможность админу
 / когда он заходит в свой личный кабинет делать админские экшны
 
-- if policy(bulletin).show? 
+- if policy(bulletin).show? && ( profile_page? || admin_all_bulletins_page?)
   = link_to t('.show'),
     bulletin,
     class: 'me-2'                     
-- if policy(bulletin).edit?
+- if policy(bulletin).edit? && profile_page?
   = link_to t('.edit'),
     edit_bulletin_path(bulletin), 
     class: 'me-2'
-- if policy(bulletin).to_moderate?
+- if policy(bulletin).to_moderate? && profile_page?
   = link_to t('.to_moderate'),
     to_moderate_bulletin_path(bulletin),
-    data: { turbo_method: :post, turbo_confirm: t('.action.confirm.to_moderate') },
+    data: { turbo_method: :post, turbo_confirm: t('.confirm.to_moderate') },
     class: 'me-2'  
+- if policy(bulletin).publish? && admin_page?
+  = link_to t('.publish'),
+    publish_bulletin_path(bulletin),
+    data: { turbo_method: :post, turbo_confirm: t('.confirm.publish') },
+    class: 'me-2'
+- if policy(bulletin).reject? && admin_page?
+  = link_to t('.reject'),
+    reject_bulletin_path(bulletin),
+    data: { turbo_method: :post, turbo_confirm: t('.confirm.reject') },
+    class: 'me-2'
 - if policy(bulletin).archive?
   = link_to t('.archive'),
     archive_bulletin_path(bulletin),
-    data: { turbo_method: :post, turbo_confirm: t('.action.confirm.archive') },
+    data: { turbo_method: :post, turbo_confirm: t('.confirm.archive') },
     class: 'text-danger'

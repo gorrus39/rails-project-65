@@ -11,23 +11,57 @@
 #   end
 
 my_email = 'gorrus100@gmail.com'
-user = User.find_by(email: my_email)
-file_path = Rails.root.join('test/fixtures/files/man.jpg')
+admin = User.find_by(email: my_email)
+user = User.create(name: Faker::Name.name, email: Faker::Internet.email)
 
-if Category.all.empty?
-  5.times do |i|
-    Category.create(name: "example #{i + 1}")
-  end
+car_image_paths = [
+  Rails.root.join('test/fixtures/files/cars/first.jpg'),
+  Rails.root.join('test/fixtures/files/cars/second.jpeg'),
+  Rails.root.join('test/fixtures/files/cars/third.png')
+]
+
+tree_image_paths = [
+  Rails.root.join('test/fixtures/files/trees/first.jpeg'),
+  Rails.root.join('test/fixtures/files/trees/second.jpeg'),
+  Rails.root.join('test/fixtures/files/trees/third.jpeg')
+]
+
+bridge_image_paths = [
+  Rails.root.join('test/fixtures/files/bridges/first.png'),
+  Rails.root.join('test/fixtures/files/bridges/second.png'),
+  Rails.root.join('test/fixtures/files/bridges/third.png')
+]
+
+%w[деревья машины мосты].each do |category|
+  Category.create(name: category)
 end
 
-if user
-  5.times do
-    bulletin = user.bulletins.build(
-      description: Faker::Lorem.paragraph,
-      title: Faker::Lorem.sentence(word_count: 3),
-      category: Category.all.sample
-    )
-    bulletin.image.attach(io: File.open(file_path), filename: 'filename.jpg')
-    bulletin.save!
-  end
+car_image_paths.each do |image_path|
+  bulletin = user.bulletins.build(
+    description: Faker::Lorem.paragraph,
+    title: Faker::Lorem.sentence(word_count: 3),
+    category: Category.find_by(name: 'машины')
+  )
+  bulletin.image.attach(io: File.open(image_path), filename: 'filename.jpg')
+  bulletin.save!
+end
+
+tree_image_paths.each do |image_path|
+  bulletin = user.bulletins.build(
+    description: Faker::Lorem.paragraph,
+    title: Faker::Lorem.sentence(word_count: 3),
+    category: Category.find_by(name: 'деревья')
+  )
+  bulletin.image.attach(io: File.open(image_path), filename: 'filename.jpg')
+  bulletin.save!
+end
+
+bridge_image_paths.each do |image_path|
+  bulletin = admin.bulletins.build(
+    description: Faker::Lorem.paragraph,
+    title: Faker::Lorem.sentence(word_count: 3),
+    category: Category.find_by(name: 'мосты')
+  )
+  bulletin.image.attach(io: File.open(image_path), filename: 'filename.jpg')
+  bulletin.save!
 end

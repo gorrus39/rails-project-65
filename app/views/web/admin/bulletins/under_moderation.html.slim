@@ -13,8 +13,5 @@
         - @bulletins.each do |bulletin|
           tr
             th = link_to bulletin.title, bulletin
-            th = bulletin.created_at
-            th
-            /   = link_to t('.publish_action'),
-            /   = link_to t('.publish_action'),
-            /   = link_to t('.publish_action'),
+            th = time_ago_in_words(bulletin.created_at)
+            th = render 'web/partials/bulletin_actions', bulletin:

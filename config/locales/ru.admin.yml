@@ -6,8 +6,20 @@ ru:
         all_bulletins: Все объявления
         all_categories: Все категории
       bulletins:
-        on_moderate:
+        under_moderation:
           title: Объявления на модерации
           cell_name: Name
           cell_created_at: Дата создания
           cell_actions: Действия
+        index:
+          title: Объявления
+          cell_name: Название
+          cell_state: Состояние
+          cell_created_at: Дата создания
+          cell_actions: Действия
+          state:
+            draft: Черновик
+            under_moderation: На модерации
+            published: Опубликовано
+            rejected: Возвращено
+            archived: В архиве

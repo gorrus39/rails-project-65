@@ -4,7 +4,6 @@ class BulletinPolicy < ApplicationPolicy
   def to_moderate?
     return false unless record.may_to_moderate? # aasm не позволяет
     return false unless user # не залогинненый юзер
-    return false if user.admin? # админу нельзя отправлять на модерацию
     return false if record.user != user # объявление созданное этим юзером
 
     true
@@ -20,21 +19,22 @@ class BulletinPolicy < ApplicationPolicy
 
   def publish?
     may_publish = record.may_publish? # aasm позволяет
-    return true if my_bulletin && may_publish
+    return true if may_publish && user.admin?
 
     false
   end
 
   def reject?
     may_reject = record.may_reject? # aasm позволяет
-    return true if my_bulletin && may_reject
+    return true if user.admin? && may_reject
 
     false
   end
 
   def archive?
     may_archive = record.may_archive? # aasm позволяет
-    return true if my_bulletin && may_archive
+    return true if user.admin? && may_archive
+    return true if record.user != user # объявление созданное этим юзером
 
     false
   end

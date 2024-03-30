@@ -2,28 +2,23 @@ require 'test_helper'
 
 class BulletinePolicyTest < ActionDispatch::IntegrationTest
   include Pundit::Authorization
-
+  # all_bulletin_actions = %i[show new create edit update to_moderate publish reject archive]
   setup do
     @admin = users(:admin)
-    @bulletin = bulletins(:one)
+    @bulletin_under_moderation = bulletins(:under_moderation)
   end
 
-  test 'bulletin actions for an administrator' do
+  test '@admin with @bulletin_under_moderation' do
     sign_in @admin
 
-    assert policy(@bulletin).show?
-    assert_not policy(@bulletin).edit?
+    # allows
+    %i[show? publish? reject? archive?].each do |action|
+      assert policy(@bulletin_under_moderation).send(action), "raise with #{action}"
+    end
+
+    # disallows
+    %i[new? create? edit? update? to_moderate?].each do |action|
+      assert_not policy(@bulletin_under_moderation).send(action), "raise with #{action}"
+    end
   end
 end
-
-# bulletin_actions = %i[
-#   show
-#   new
-#   create
-#   edit
-#   update
-#   to_moderate
-#   publish
-#   reject
-#   archive
-# ]

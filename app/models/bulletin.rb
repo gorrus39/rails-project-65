@@ -60,7 +60,7 @@ class Bulletin < ApplicationRecord
     end
 
     event :reject do
-      transitions from: :under_moderation, to: :reject
+      transitions from: :under_moderation, to: :rejected
     end
   end
 end
