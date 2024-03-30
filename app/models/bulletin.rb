@@ -38,28 +38,29 @@ class Bulletin < ApplicationRecord
                     size: { less_than: 5.megabytes }
 
   scope :under_moderation, -> { where(state: :under_moderation) }
+  scope :published, -> { where(state: :published) }
 
   aasm column: :state do
     state :draft, initial: true
     state :under_moderation, :published, :rejected, :archived
 
-    event :to_moderage, to: :under_moderation do
-      transitions from: :draft
+    event :to_moderate do
+      transitions from: :draft, to: :under_moderation
     end
 
-    event :archive, to: :archived do
-      transitions from: :draft
-      transitions from: :under_moderation
-      transitions from: :published
-      transitions from: :rejected
+    event :archive do
+      transitions from: :draft, to: :archived
+      transitions from: :under_moderation, to: :archived
+      transitions from: :published, to: :archived
+      transitions from: :rejected, to: :archived
     end
 
-    event :publish, to: :published do
-      transitions from: :under_moderation
+    event :publish do
+      transitions from: :under_moderation, to: :published
     end
 
-    event :reject, to: :reject do
-      transitions from: :under_moderation
+    event :reject do
+      transitions from: :under_moderation, to: :reject
     end
   end
 end

@@ -4,7 +4,9 @@
 # в development режиме работает на sqlite 
 
 # первый запуск
-install:   prepare_dependencies make_env_file prepare_db prepare_assets lint_rubocop lint_slim test
+install:   prepare_dependencies make_env_file prepare_db_local prepare_assets lint_rubocop lint_slim test
+
+deploy:    prepare_dependencies make_env_file prepare_db prepare_assets lint_rubocop lint_slim test
 
 on_commit: prepare_dependencies mirgate_db prepare_assets lint_rubocop lint_slim test
 
@@ -13,6 +15,9 @@ prepare_dependencies:
 
 prepare_db:
 	bin/rails db:migrate db:seed RAILS_ENV=production
+
+prepare_db_local:
+	bin/rails db:migrate db:seed 
 
 mirgate_db:
 	bin/rails db:migrate RAILS_ENV=production

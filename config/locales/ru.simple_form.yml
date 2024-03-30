@@ -1,7 +1,7 @@
 ru:
   activerecord:
     attributes:
-      bulletins:
+      bulletin:
         title: Заголовок
     models:
       bulletin: объявление

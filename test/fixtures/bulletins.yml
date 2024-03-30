@@ -31,6 +31,6 @@ one:
 two:
   title: MyString
   description: MyText
-  user: two
+  user: one
   category: two
 

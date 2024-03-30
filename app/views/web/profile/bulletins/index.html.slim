@@ -14,9 +14,10 @@
               th = t('.col.created_at')
               th = t('.col.actions')
           tbody
-            - @bulletins.each do |b|
+            - @bulletins.each do |bulletin|
                 tr
-                  td = b.title
-                  td = t(".state.#{b.state}")
-                  td = b.created_at
-                  td = "t('.col.actions')"
+                  td = bulletin.title
+                  td = t(".state.#{bulletin.state}")
+                  td = time_ago_in_words(bulletin.created_at)
+                  td = render 'web/partials/bulletin_actions', bulletin:
+  

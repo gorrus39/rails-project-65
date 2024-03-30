@@ -1,0 +1,11 @@
+ru:
+  web:
+    partials:
+      bulletin_actions:
+        show: Показать
+        edit: Редактировать
+        to_moderate: На модерацию
+        archive: В архив
+        confirm: 
+          archive: Подтвердить архивацию
+          to_moderate: Подтвердить отправку на модерацию

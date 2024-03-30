@@ -108,4 +108,6 @@ gem 'i18n-debug', '~> 1.2'
 
 gem 'rails-i18n', '~> 7.0'
 
-gem "aasm", "~> 5.5"
+gem 'aasm', '~> 5.5'
+
+gem 'pundit', '~> 2.3'

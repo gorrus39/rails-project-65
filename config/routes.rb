@@ -2,9 +2,20 @@
 
 Rails.application.routes.draw do
   scope module: :web do
+    root 'bulletins#index'
+    resources :bulletins
+    bulletin_additional_actions = %i[
+      to_moderate
+      publish
+      reject
+      archive
+    ]
+    bulletin_additional_actions.each do |action|
+      post "bulletins/:id/#{action}", to: "bulletins##{action}", as: "#{action}_bulletin"
+    end
+
     scope module: :profile do
       get 'profile', to: 'bulletins#index'
-      resources :bulletins, only: %i[new create edit update destroy]
     end
 
     namespace :admin do
@@ -21,10 +32,6 @@ Rails.application.routes.draw do
     post ':provider', to: 'web/auth#request', as: :auth_request
     get ':provider/callback', to: 'web/auth#callback', as: :callback_auth
   end
-
-  resources :categories
-  resources :bulletins, only: %i[show]
-  root 'web/bulletins#index'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

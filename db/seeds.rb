@@ -14,6 +14,12 @@ my_email = 'gorrus100@gmail.com'
 user = User.find_by(email: my_email)
 file_path = Rails.root.join('test/fixtures/files/man.jpg')
 
+if Category.all.empty?
+  5.times do |i|
+    Category.create(name: "example #{i + 1}")
+  end
+end
+
 if user
   5.times do
     bulletin = user.bulletins.build(

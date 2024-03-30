@@ -11,13 +11,8 @@
 #
 
 one:
-  name: MyString
-  email: MyString
-  admin: false
-
-two:
-  name: MyString
-  email: MyString
+  name: <%= Faker::Name.name %>
+  email: <%= Faker::Internet.email %>
   admin: false
 
 admin:
