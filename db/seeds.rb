@@ -13,6 +13,7 @@
 my_email = 'gorrus100@gmail.com'
 admin = User.find_by(email: my_email)
 user = User.create(name: Faker::Name.name, email: Faker::Internet.email)
+availible_bulletin_states = Bulletin.aasm.states.map(&:name)
 
 car_image_paths = [
   Rails.root.join('test/fixtures/files/cars/first.jpg'),
@@ -40,7 +41,8 @@ car_image_paths.each do |image_path|
   bulletin = user.bulletins.build(
     description: Faker::Lorem.paragraph,
     title: Faker::Lorem.sentence(word_count: 3),
-    category: Category.find_by(name: 'машины')
+    category: Category.find_by(name: 'машины'),
+    state: availible_bulletin_states.sample
   )
   bulletin.image.attach(io: File.open(image_path), filename: 'filename.jpg')
   bulletin.save!
@@ -50,7 +52,8 @@ tree_image_paths.each do |image_path|
   bulletin = user.bulletins.build(
     description: Faker::Lorem.paragraph,
     title: Faker::Lorem.sentence(word_count: 3),
-    category: Category.find_by(name: 'деревья')
+    category: Category.find_by(name: 'деревья'),
+    state: availible_bulletin_states.sample
   )
   bulletin.image.attach(io: File.open(image_path), filename: 'filename.jpg')
   bulletin.save!
@@ -60,7 +63,8 @@ bridge_image_paths.each do |image_path|
   bulletin = admin.bulletins.build(
     description: Faker::Lorem.paragraph,
     title: Faker::Lorem.sentence(word_count: 3),
-    category: Category.find_by(name: 'мосты')
+    category: Category.find_by(name: 'мосты'),
+    state: availible_bulletin_states.sample
   )
   bulletin.image.attach(io: File.open(image_path), filename: 'filename.jpg')
   bulletin.save!

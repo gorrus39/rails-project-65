@@ -6,8 +6,11 @@ ru:
         description: Описание
         category: Категория
         image: Изображение
+      category:
+        name: Название
     models:
       bulletin: объявление
+      category: категорию
     errors:
       models:
         bulletin:
@@ -27,6 +30,8 @@ ru:
         description: Описание
         category: Категория
         image: Фотография
+      category:
+        name: Название
 
 ##########################################################
 en:

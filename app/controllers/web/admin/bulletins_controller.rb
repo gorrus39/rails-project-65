@@ -8,7 +8,8 @@ module Web
       end
 
       def index
-        @bulletins = Bulletin.all
+        @q = Bulletin.ransack(params[:q])
+        @bulletins = @q.result.includes(:category).page(params[:page])
       end
     end
   end

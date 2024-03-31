@@ -42,6 +42,10 @@ module Web
     end
 
     def index
+      # закомментированная строка - для того,
+      # чтоб можно было залогиниться без github,
+      # когда нету ключей в .env
+      # session['user_id'] = User.find_by(email: 'gorrus100@gmail.com').id
       @bulletins = Bulletin.published.order(created_at: :desc)
     end
 

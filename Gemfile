@@ -111,3 +111,7 @@ gem 'rails-i18n', '~> 7.0'
 gem 'aasm', '~> 5.5'
 
 gem 'pundit', '~> 2.3'
+
+gem 'kaminari', '~> 1.2'
+
+gem 'ransack', github: 'activerecord-hackery/ransack', branch: 'main'

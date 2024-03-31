@@ -63,4 +63,12 @@ class Bulletin < ApplicationRecord
       transitions from: :under_moderation, to: :rejected
     end
   end
+
+  def self.ransackable_associations(_auth_object = nil)
+    %w[category image_attachment image_blob user]
+  end
+
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[state title]
+  end
 end

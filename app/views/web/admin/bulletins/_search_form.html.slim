@@ -1,0 +1,10 @@
+= search_form_for @q, url: admin_bulletins_path do |f|
+  = f.label :title_cont 
+  = f.search_field :title_cont
+
+  = f.label :category_id_eq
+  - categories_options = Category.all.map { |category| [category.name, category.id] }
+  = f.collection_select :category_id_eq, categories_options, :last, :first, include_blank: true
+
+  = f.submit
+  = link_to t('.reset'), admin_bulletins_path
