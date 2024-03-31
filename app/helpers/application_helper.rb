@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
-  def admin_page?
-    request.path.include?('admin')
+  def admin_root_page?
+    request.path.include?('admin') && request.path.exclude?('bulletins')
   end
 
   def profile_page?

@@ -20,10 +20,8 @@ Rails.application.routes.draw do
 
     namespace :admin do
       root 'bulletins#under_moderation', to: 'bulletins#under_moderation'
-      # putch ''
       resources :bulletins, only: %i[index]
-      # get 'bulletins', to: 'bulletins#index'
-      get 'categories', to: 'categories#index'
+      resources :categories, only: %i[index new create edit update destroy]
     end
   end
 

@@ -23,3 +23,13 @@ ru:
             published: Опубликовано
             rejected: Возвращено
             archived: В архиве
+      categories:
+        index:
+          title: Категории
+          add_category: Добавить категорию
+          id: ID
+          name: Название
+          actions: Действия
+          edit: Редактировать
+          destroy: Удалить
+          confirm_destroy: Действительно хотите удалить категорию с прикреплёнными к ней объявлениями?

@@ -50,7 +50,7 @@ class BulletinPolicy < ApplicationPolicy
   end
 
   def new?
-    return true if user && !user.admin?
+    return true if user
 
     false
   end
