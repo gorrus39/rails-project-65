@@ -12,12 +12,12 @@ class BulletinePolicyTest < ActionDispatch::IntegrationTest
     sign_in @admin
 
     # allows
-    %i[show? publish? reject? archive?].each do |action|
+    %i[new? create? show? publish? reject? archive?].each do |action|
       assert policy(@bulletin_under_moderation).send(action), "raise with #{action}"
     end
 
     # disallows
-    %i[new? create? edit? update? to_moderate?].each do |action|
+    %i[edit? update? to_moderate?].each do |action|
       assert_not policy(@bulletin_under_moderation).send(action), "raise with #{action}"
     end
   end

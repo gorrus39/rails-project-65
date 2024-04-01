@@ -4,11 +4,11 @@
 # в development режиме работает на sqlite 
 
 # первый запуск
-install:   prepare_dependencies make_env_file prepare_db_local prepare_assets lint_rubocop lint_slim test
+install:          prepare_dependencies make_env_file prepare_db_local prepare_assets lint_rubocop lint_slim test
 
-deploy:    prepare_dependencies make_env_file prepare_db prepare_assets lint_rubocop lint_slim test
+deploy_on_render: prepare_dependencies  prepare_db prepare_assets lint_rubocop lint_slim test
 
-on_commit: prepare_dependencies mirgate_db prepare_assets lint_rubocop lint_slim test
+on_commit:        prepare_dependencies mirgate_db prepare_assets lint_rubocop lint_slim test
 
 prepare_dependencies:
 	bundle install
