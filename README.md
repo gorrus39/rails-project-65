@@ -14,3 +14,4 @@
 - slim 
 - :production => postgres, :text, :development => sqlite3
 - gem 'sentry-ruby' - получение ошибок от продакшн среды на 
+- фыв
