@@ -37,47 +37,35 @@ bridge_image_paths = [
   Category.create(name: category)
 end
 
-def make_car_bulletins(user, availible_bulletin_states, car_image_paths)
-  car_image_paths.each do |image_path|
-    bulletin = user.bulletins.build(
-      description: Faker::Lorem.paragraph,
-      title: Faker::Lorem.sentence(word_count: 3),
-      category: Category.find_by(name: 'машины'),
-      state: availible_bulletin_states.sample
-    )
-    bulletin.image.attach(io: File.open(image_path), filename: 'filename.jpg')
-    bulletin.save
-  end
+car_image_paths.each do |image_path|
+  bulletin = user.bulletins.build(
+    description: Faker::Lorem.paragraph,
+    title: Faker::Lorem.sentence(word_count: 3),
+    category: Category.find_by(name: 'машины'),
+    state: availible_bulletin_states.sample
+  )
+  bulletin.image.attach(io: File.open(image_path), filename: 'filename.jpg')
+  bulletin.save
 end
 
-def make_tree_bulletins(user, availible_bulletin_states, tree_image_paths)
-  tree_image_paths.each do |image_path|
-    bulletin = user.bulletins.build(
-      description: Faker::Lorem.paragraph,
-      title: Faker::Lorem.sentence(word_count: 3),
-      category: Category.find_by(name: 'деревья'),
-      state: availible_bulletin_states.sample
-    )
-    bulletin.image.attach(io: File.open(image_path), filename: 'filename.jpg')
-    bulletin.save
-  end
+tree_image_paths.each do |image_path|
+  bulletin = user.bulletins.build(
+    description: Faker::Lorem.paragraph,
+    title: Faker::Lorem.sentence(word_count: 3),
+    category: Category.find_by(name: 'деревья'),
+    state: availible_bulletin_states.sample
+  )
+  bulletin.image.attach(io: File.open(image_path), filename: 'filename.jpg')
+  bulletin.save
 end
 
-def make_bridge_bulletins(user, availible_bulletin_states, bridge_image_paths)
-  bridge_image_paths.each do |image_path|
-    bulletin = user.bulletins.build(
-      description: Faker::Lorem.paragraph,
-      title: Faker::Lorem.sentence(word_count: 3),
-      category: Category.find_by(name: 'мосты'),
-      state: availible_bulletin_states.sample
-    )
-    bulletin.image.attach(io: File.open(image_path), filename: 'filename.jpg')
-    bulletin.save
-  end
-end
-
-10.times do
-  make_car_bulletins(user, availible_bulletin_states, car_image_paths)
-  make_tree_bulletins(user, availible_bulletin_states, tree_image_paths)
-  make_bridge_bulletins(admin, availible_bulletin_states, bridge_image_paths)
+bridge_image_paths.each do |image_path|
+  bulletin = user.bulletins.build(
+    description: Faker::Lorem.paragraph,
+    title: Faker::Lorem.sentence(word_count: 3),
+    category: Category.find_by(name: 'мосты'),
+    state: availible_bulletin_states.sample
+  )
+  bulletin.image.attach(io: File.open(image_path), filename: 'filename.jpg')
+  bulletin.save
 end
