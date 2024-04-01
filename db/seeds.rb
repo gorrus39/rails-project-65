@@ -46,6 +46,7 @@ car_image_paths.each do |image_path|
   )
   bulletin.image.attach(io: File.open(image_path), filename: 'filename.jpg')
   bulletin.save
+  sleep 1
 end
 
 tree_image_paths.each do |image_path|
@@ -57,6 +58,7 @@ tree_image_paths.each do |image_path|
   )
   bulletin.image.attach(io: File.open(image_path), filename: 'filename.jpg')
   bulletin.save
+  sleep 1
 end
 
 bridge_image_paths.each do |image_path|
@@ -68,4 +70,5 @@ bridge_image_paths.each do |image_path|
   )
   bulletin.image.attach(io: File.open(image_path), filename: 'filename.jpg')
   bulletin.save
+  sleep 1
 end
