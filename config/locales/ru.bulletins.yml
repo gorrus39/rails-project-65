@@ -22,3 +22,7 @@ ru:
         add_bulletin: Добавить объявление
       edit:
         edit_bulletin: Обновить объявление
+      search_form:
+        hint:
+          title: Искать по названию объявления
+          category: Выбрать категорию

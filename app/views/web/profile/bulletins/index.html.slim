@@ -19,5 +19,4 @@
                   td = bulletin.title
                   td = t(".state.#{bulletin.state}")
                   td = time_ago_in_words(bulletin.created_at)
-                  td = render 'web/partials/bulletin_actions', bulletin:
-  
+                  td = render 'web/bulletins/actions', bulletin:

@@ -1,0 +1,17 @@
+= search_form_for @q do |f|
+  .row.my-2
+    .col-6
+      .form-group.mb-3.string.required.q_title_cont
+        = f.search_field :title_cont, class: 'form-control string required'
+        small.form-text.text-muted = t('.hint.title')
+    .col-4
+      .form-group.mb-3.select.required.q_category_id_eq.width-100
+        = f.collection_select :category_id_eq,
+          Category.all.map { |category| [category.name, category.id] },
+          :last, :first,
+          include_blank: true,
+          class: 'form-control select required'
+        small.form-text.text-muted = t('.hint.category')
+    .col-2
+      = f.submit
+      = link_to t('.reset'), bulletins_path
