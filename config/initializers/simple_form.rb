@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 #
 # Uncomment this and change the path if necessary to include your own
 # components.
@@ -13,8 +14,30 @@ SimpleForm.setup do |config|
   # wrapper, change the order or even add your own to the
   # stack. The options given below are used to wrap the
   # whole input.
+  # # Включите использование Ransack для генерации полей поиска
+  # config.wrappers :default, tag: 'div', class: 'form-group', error_class: 'is-invalid' do |b|
+  #   b.use :html5
+  #   b.use :placeholder
+  #   b.optional :maxlength
+  #   b.optional :pattern
+  #   b.optional :min_max
+  #   b.optional :readonly
+
+  #   # Добавляем класс 'form-control' к полям ввода
+  #   b.use :input, class: 'form-control', error_class: 'is-invalid'
+
+  #   # Добавляем класс 'form-select' к элементам select
+  #   b.use :select, class: 'form-select', error_class: 'is-invalid'
+
+  #   # Добавляем класс 'form-check-input' к радио и чекбоксам
+  #   b.use :label_input, class: 'form-check-input', error_class: 'is-invalid'
+
+  #   b.use :full_error, wrap_with: { tag: 'div', class: 'invalid-feedback' }
+  #   b.use :hint, wrap_with: { tag: 'small', class: 'form-text text-muted' }
+  # end
+
   config.wrappers :default, class: :input,
-    hint_class: :field_with_hint, error_class: :field_with_errors, valid_class: :field_without_errors do |b|
+                            hint_class: :field_with_hint, error_class: :field_with_errors, valid_class: :field_without_errors do |b|
     ## Extensions enabled by default
     # Any of these extensions can be disabled for a
     # given input by passing: `f.input EXTENSION_NAME => false`.

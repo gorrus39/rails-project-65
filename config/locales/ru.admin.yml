@@ -23,6 +23,11 @@ ru:
             published: Опубликовано
             rejected: Возвращено
             archived: В архиве
+        search_form:
+          reset: Сброс
+          hint:
+            title: Искать по названию объявленя
+            state: По состоянию
       categories:
         index:
           title: Категории
@@ -43,4 +48,3 @@ ru:
           notice: Категория удалена
         new:
           title: Новая категория
-          

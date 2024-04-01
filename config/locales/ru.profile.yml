@@ -16,4 +16,7 @@ ru:
             published: Опубликовано
             rejected: Возвращено
             archived: В архиве
-
+        search_form:
+          hint:
+            title: Искать по названию объявления
+            state: По состоянию

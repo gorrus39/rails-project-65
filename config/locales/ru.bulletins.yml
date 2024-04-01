@@ -1,4 +1,6 @@
 ru:
+  ransack:
+    search: Искать
   web:
     bulletins:
       to_moderate:
@@ -26,3 +28,17 @@ ru:
         hint:
           title: Искать по названию объявления
           category: Выбрать категорию
+        reset: Сброс
+      actions:
+        show: Показать
+        edit: Редактировать
+        to_moderate: На модерацию
+        archive: В архив
+        publish: Опубликовать
+        reject: Вернуть
+        confirm: 
+          archive: Подтвердить архивацию
+          to_moderate: Подтвердить отправку на модерацию
+          publish: Подтвердить публикацию
+          reject: Подтвердить возвращение
+      

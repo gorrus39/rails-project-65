@@ -5,6 +5,7 @@
         h2 = t('.title')
         hr
       = link_to t('.new_bulletin'), new_bulletin_path
+      = render 'search_form', bulletins: @bulletins
       .row.mt-2
         table.table.table-borderless
           thead
@@ -20,3 +21,4 @@
                   td = t(".state.#{bulletin.state}")
                   td = time_ago_in_words(bulletin.created_at)
                   td = render 'web/bulletins/actions', bulletin:
+        = paginate @bulletins

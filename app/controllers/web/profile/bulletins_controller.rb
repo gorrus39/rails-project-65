@@ -4,11 +4,12 @@ module Web
   module Profile
     class BulletinsController < Web::Profile::ApplicationController
       def index
-        @bulletins = current_user&.bulletins
-      end
-
-      def under_moderation
-        @bulletins = Bulletin.under_moderation
+        @q = current_user.bulletins.ransack(params[:q])
+        @bulletins = @q
+                     .result
+                     .order(created_at: :desc)
+                     .page(params[:page])
+                     .per(12)
       end
     end
   end

@@ -11,7 +11,7 @@ module Web
       @bulletin.save
       flash[:notice] = t('.notice')
 
-      redirect_to profile_path
+      redirect_to request.referer
     end
 
     def publish
@@ -20,7 +20,7 @@ module Web
       @bulletin.save
       flash[:notice] = t('.notice')
 
-      redirect_to profile_path
+      redirect_to request.referer
     end
 
     def reject
@@ -29,7 +29,7 @@ module Web
       @bulletin.save
       flash[:notice] = t('.notice')
 
-      redirect_to profile_path
+      redirect_to request.referer
     end
 
     def archive
@@ -38,12 +38,18 @@ module Web
       @bulletin.save
       flash[:notice] = t('.notice')
 
-      redirect_to profile_path
+      redirect_to request.referer
     end
 
     def index
       @q = Bulletin.published.ransack(params[:q])
-      @bulletins = @q.result.with_attached_image.includes(:category).order(created_at: :desc)
+      @bulletins = @q
+                   .result
+                   .with_attached_image
+                   .includes(:category)
+                   .order(created_at: :desc)
+                   .page(params[:page])
+                   .per(12)
     end
 
     def show
