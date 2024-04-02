@@ -15,4 +15,26 @@ Metrics/BlockLength:
   Exclude:
     - config/environments/*
     - config/routes.rb
+    - db/migrate/*
+    - config/initializers/simple_form.rb
+    - config/initializers/simple_form_bootstrap.rb
+    - lib/tasks/auto_annotate_models.rake
 
+
+Layout/LineLength:
+  Exclude:
+    - config/initializers/simple_form.rb
+    - config/initializers/simple_form_bootstrap.rb
+
+
+Metrics/AbcSize:
+  Exclude:
+    - db/migrate/*
+
+Metrics/MethodLength:
+  Exclude:
+    - db/migrate/*
+
+Rails/RakeEnvironment:
+  Exclude:
+    - lib/tasks/auto_annotate_models.rake

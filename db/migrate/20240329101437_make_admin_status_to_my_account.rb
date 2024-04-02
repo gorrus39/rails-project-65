@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MakeAdminStatusToMyAccount < ActiveRecord::Migration[7.1]
   def change
     my_email = 'gorrus100@gmail.com'

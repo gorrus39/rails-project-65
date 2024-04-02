@@ -1,7 +1,13 @@
-require "test_helper"
+# frozen_string_literal: true
 
-class Web::Profile::BulletinsControllerTest < ActionDispatch::IntegrationTest
-  # test "the truth" do
-  #   assert true
-  # end
+require 'test_helper'
+
+module Web
+  module Profile
+    class BulletinsControllerTest < ActionDispatch::IntegrationTest
+      # test "the truth" do
+      #   assert true
+      # end
+    end
+  end
 end

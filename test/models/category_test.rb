@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: categories
@@ -11,10 +13,12 @@
 #
 #  index_categories_on_name  (name) UNIQUE
 #
-require "test_helper"
+require 'test_helper'
 
-class Web::CategoryTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+module Web
+  class CategoryTest < ActiveSupport::TestCase
+    # test "the truth" do
+    #   assert true
+    # end
+  end
 end

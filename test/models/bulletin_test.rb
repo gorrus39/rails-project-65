@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: bulletins
@@ -21,7 +23,7 @@
 #  category_id  (category_id => categories.id)
 #  user_id      (user_id => users.id)
 #
-require "test_helper"
+require 'test_helper'
 
 class BulletinTest < ActiveSupport::TestCase
   # test "the truth" do
