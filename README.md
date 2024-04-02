@@ -38,6 +38,6 @@ The project is a bulletin board, a simplified analogue of, for example, avito an
 - all text outputs are made via i18n technology
 - postgres for production environment
 
-# running the project locally in development mode
+## Running the project locally in development mode
     make install
     rails s
