@@ -1,0 +1,24 @@
+= render 'web/partials/bulletin_actions/publish',
+  bulletin:, to_path: publish_admin_bulletin_path(bulletin)
+
+= render 'web/partials/bulletin_actions/reject',
+  bulletin:, to_path: reject_admin_bulletin_path(bulletin)
+
+= render 'web/partials/bulletin_actions/archive',
+  bulletin:, to_path: archive_admin_bulletin_path(bulletin)
+
+/ - if policy(bulletin).publish?
+/   = link_to t('.publish'),
+/     publish_admin_bulletin_path(bulletin),
+/     data: { turbo_method: :post, turbo_confirm: t('.confirm.publish') },
+/     class: 'me-2'
+/ - if policy(bulletin).reject?
+/   = link_to t('.reject'),
+/     reject_admin_bulletin_path(bulletin),
+/     data: { turbo_method: :post, turbo_confirm: t('.confirm.reject') },
+/     class: 'me-2'
+/ - if policy(bulletin).archive?
+/   = link_to t('.archive'),
+/     archive_admin_bulletin_path(bulletin),
+/     data: { turbo_method: :post, turbo_confirm: t('.confirm.archive') },
+/     class: 'text-danger'

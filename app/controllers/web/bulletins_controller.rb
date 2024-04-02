@@ -2,44 +2,8 @@
 
 module Web
   class BulletinsController < Web::ApplicationController
-    before_action :set_bulletin, only: %i[show edit update destroy to_moderate publish reject archive]
-    after_action :verify_authorized, only: %i[show new create edit update to_moderate publish reject archive]
-
-    def to_moderate
-      authorize @bulletin
-      @bulletin.to_moderate
-      @bulletin.save
-      flash[:notice] = t('.notice')
-
-      redirect_to request.referer
-    end
-
-    def publish
-      authorize @bulletin
-      @bulletin.publish
-      @bulletin.save
-      flash[:notice] = t('.notice')
-
-      redirect_to request.referer
-    end
-
-    def reject
-      authorize @bulletin
-      @bulletin.reject
-      @bulletin.save
-      flash[:notice] = t('.notice')
-
-      redirect_to request.referer
-    end
-
-    def archive
-      authorize @bulletin
-      @bulletin.archive
-      @bulletin.save
-      flash[:notice] = t('.notice')
-
-      redirect_to request.referer
-    end
+    before_action :set_bulletin, only: %i[show edit update destroy archive to_moderate]
+    after_action :verify_authorized, only: %i[show new create edit update archive to_moderate]
 
     def index
       @q = Bulletin.published.ransack(params[:q])
@@ -72,8 +36,7 @@ module Web
       @bulletin.user = current_user
 
       if @bulletin.save
-        path = request.referer || root_path
-        redirect_to path, notice: t('.notice')
+        redirect_to profile_path, notice: t('.notice')
       else
         flash[:alert] = t('.alert')
         render :new, status: :unprocessable_entity
@@ -84,7 +47,7 @@ module Web
       authorize @bulletin
 
       if @bulletin.update(bulletin_params)
-        redirect_to bulletin_url(@bulletin), notice: t('.notice')
+        redirect_to profile_path, notice: t('.notice')
       else
         render :edit, status: :unprocessable_entity
       end
@@ -93,6 +56,24 @@ module Web
     def destroy
       @bulletin.destroy!
       redirect_to bulletins_url, notice: t('.notice')
+    end
+
+    def to_moderate
+      authorize @bulletin
+      @bulletin.to_moderate
+      @bulletin.save
+      flash[:notice] = t('.notice')
+
+      redirect_to request.referer
+    end
+
+    def archive
+      authorize @bulletin
+      @bulletin.archive
+      @bulletin.save
+      flash[:notice] = t('.notice')
+
+      redirect_to request.referer
     end
 
     private

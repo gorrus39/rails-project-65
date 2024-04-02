@@ -14,5 +14,5 @@
           tr
             td = link_to bulletin.title, bulletin
             td = time_ago_in_words(bulletin.created_at)
-            td = render 'web/bulletins/actions', bulletin:
+            td = render 'under_moderation_actions', bulletin:
     = paginate @bulletins

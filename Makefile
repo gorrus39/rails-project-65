@@ -3,7 +3,7 @@
 # необходимо настроить соединение с postgres. 
 # в development режиме работает на sqlite 
 
-# первый запуск
+# локальный деплой development
 install:          prepare_dependencies make_env_file prepare_db_local prepare_assets lint_rubocop lint_slim test
 
 deploy_on_render: prepare_dependencies  prepare_db prepare_assets lint_rubocop lint_slim test

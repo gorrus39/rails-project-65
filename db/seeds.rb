@@ -10,65 +10,56 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+# создание юзеров и 1 админа с определённым email
+users = []
 my_email = 'gorrus100@gmail.com'
-admin = User.find_by(email: my_email)
-user = User.create(name: Faker::Name.name, email: Faker::Internet.email)
-availible_bulletin_states = Bulletin.aasm.states.map(&:name)
+admin = User.find_or_create_by(email: my_email)
+admin.name ||= 'Alexey '
+admin.save
 
-car_image_paths = [
-  Rails.root.join('test/fixtures/files/cars/first.jpg'),
-  Rails.root.join('test/fixtures/files/cars/second.jpeg'),
-  Rails.root.join('test/fixtures/files/cars/third.png')
-]
-
-tree_image_paths = [
-  Rails.root.join('test/fixtures/files/trees/first.jpeg'),
-  Rails.root.join('test/fixtures/files/trees/second.jpeg'),
-  Rails.root.join('test/fixtures/files/trees/third.jpeg')
-]
-
-bridge_image_paths = [
-  Rails.root.join('test/fixtures/files/bridges/first.png'),
-  Rails.root.join('test/fixtures/files/bridges/second.png'),
-  Rails.root.join('test/fixtures/files/bridges/third.png')
-]
-
-%w[деревья машины мосты].each do |category|
-  Category.create(name: category)
+users << admin
+5.times do
+  users << User.create(
+    name: Faker::Name.name,
+    email: Faker::Internet.email
+  )
 end
 
-car_image_paths.each do |image_path|
-  bulletin = user.bulletins.build(
+# создание категорий ####
+category_cars = Category.find_or_create_by(name: 'машины')
+category_trees = Category.find_or_create_by(name: 'деревья')
+category_bridges = Category.find_or_create_by(name: 'мосты')
+
+# пути к картинкам в соответствии с категорией ###
+car_image_paths = ['first.jpg', 'second.jpeg', 'third.png'].map do |file_path|
+  Rails.root.join("test/fixtures/files/cars/#{file_path}")
+end
+tree_image_paths = ['first.jpeg', 'second.jpeg', 'third.jpeg'].map do |file_path|
+  Rails.root.join("test/fixtures/files/trees/#{file_path}")
+end
+bridge_image_paths = ['first.png', 'second.png', 'third.png'].map do |file_path|
+  Rails.root.join("test/fixtures/files/bridges/#{file_path}")
+end
+
+# возможные состояния объявлений
+STATES = Bulletin.aasm.states.map(&:name)
+
+# создание объявления
+def make_bulletin_by(category, image_paths, users)
+  bulletin = users.sample.bulletins.build(
     description: Faker::Lorem.paragraph,
     title: Faker::Lorem.sentence(word_count: 3),
-    category: Category.find_by(name: 'машины'),
-    state: availible_bulletin_states.sample
+    category:,
+    state: STATES.sample
   )
-  bulletin.image.attach(io: File.open(image_path), filename: 'filename.jpg')
+  bulletin.image.attach(io: File.open(image_paths.sample), filename: 'filename.jpg')
   bulletin.save
   sleep 1
 end
 
-tree_image_paths.each do |image_path|
-  bulletin = user.bulletins.build(
-    description: Faker::Lorem.paragraph,
-    title: Faker::Lorem.sentence(word_count: 3),
-    category: Category.find_by(name: 'деревья'),
-    state: availible_bulletin_states.sample
-  )
-  bulletin.image.attach(io: File.open(image_path), filename: 'filename.jpg')
-  bulletin.save
-  sleep 1
-end
-
-bridge_image_paths.each do |image_path|
-  bulletin = user.bulletins.build(
-    description: Faker::Lorem.paragraph,
-    title: Faker::Lorem.sentence(word_count: 3),
-    category: Category.find_by(name: 'мосты'),
-    state: availible_bulletin_states.sample
-  )
-  bulletin.image.attach(io: File.open(image_path), filename: 'filename.jpg')
-  bulletin.save
-  sleep 1
+# создание 30 объявлений
+10.times do
+  make_bulletin_by(category_cars, car_image_paths, users)
+  make_bulletin_by(category_trees, tree_image_paths, users)
+  make_bulletin_by(category_bridges, bridge_image_paths, users)
 end

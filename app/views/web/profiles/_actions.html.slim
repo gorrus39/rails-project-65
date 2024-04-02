@@ -1,0 +1,11 @@
+= render 'web/partials/bulletin_actions/show',
+  bulletin:, to_path: bulletin
+
+= render 'web/partials/bulletin_actions/edit',
+  bulletin:, to_path: edit_bulletin_path(bulletin)
+
+= render 'web/partials/bulletin_actions/to_moderate',
+  bulletin:, to_path: to_moderate_bulletin_path(bulletin)
+
+= render 'web/partials/bulletin_actions/archive',
+  bulletin:, to_path: archive_bulletin_path(bulletin)

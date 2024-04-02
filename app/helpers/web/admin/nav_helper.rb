@@ -7,7 +7,7 @@ module Web
         # ['admin'] | ['admin', 'bulletins'] | ['admin', 'categories']
         paths = request.path.split('/').slice(1..)
 
-        if admin_root_path?(paths, link_type) ||
+        if admin_under_moderation_path?(paths, link_type) ||
            admin_bulletins_path?(paths, link_type) ||
            admin_categories_path?(paths, link_type)
           'active'
@@ -18,7 +18,7 @@ module Web
 
       private
 
-      def admin_root_path?(paths, link_type)
+      def admin_under_moderation_path?(paths, link_type)
         (link_type == :root) && paths.count == 1
       end
 
