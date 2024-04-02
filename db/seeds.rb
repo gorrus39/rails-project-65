@@ -12,6 +12,7 @@
 
 # создание юзеров и 1 админа с определённым email
 users = []
+
 my_email = 'gorrus100@gmail.com'
 admin = User.find_or_create_by(email: my_email)
 admin.name ||= 'Alexey '
