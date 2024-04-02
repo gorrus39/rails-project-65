@@ -35,6 +35,3 @@ Metrics/MethodLength:
   Exclude:
     - db/migrate/*
 
-Rails/RakeEnvironment:
-  Exclude:
-    - lib/tasks/auto_annotate_models.rake
