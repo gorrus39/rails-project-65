@@ -65,3 +65,27 @@ class BulletinPolicy < ApplicationPolicy
     record.user == user # объявление созданное этим юзером
   end
 end
+# app_1  | Error:
+# app_1  | Web::Admin::BulletinsControllerTest#test_should_archive:
+# app_1  | Pundit::NotDefinedError: unable to find policy `NilClassPolicy` for `nil`
+# app_1  |     app/controllers/web/admin/bulletins_controller.rb:40:in `archive'
+# app_1  |
+# app_1  | bin/rails test /project/test/controllers/web/admin/bulletins_controller_test.rb:37
+# app_1  |
+# app_1  | E
+# app_1  |
+# app_1  | Error:
+# app_1  | Web::Admin::BulletinsControllerTest#test_should_reject:
+# app_1  | Pundit::NotDefinedError: unable to find policy `NilClassPolicy` for `nil`
+# app_1  |     app/controllers/web/admin/bulletins_controller.rb:31:in `reject'
+# app_1  |
+# app_1  | bin/rails test /project/test/controllers/web/admin/bulletins_controller_test.rb:26
+# app_1  |
+# app_1  | .E
+# app_1  |
+# app_1  | Error:
+# app_1  | Web::Admin::BulletinsControllerTest#test_should_publish:
+# app_1  | Pundit::NotDefinedError: unable to find policy `NilClassPolicy` for `nil`
+# app_1  |     app/controllers/web/admin/bulletins_controller.rb:22:in `publish'
+# app_1  |
+# app_1  | bin/rails test /project/test/controllers/web/admin/bulletins_controller_test.rb:16

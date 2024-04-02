@@ -3,6 +3,7 @@
 module Web
   module Admin
     class BulletinsController < Web::Admin::ApplicationController
+      before_action :set_bulletin, only: %i[publish reject archive]
       after_action :verify_authorized, only: %i[publish reject archive]
 
       def under_moderation
@@ -43,6 +44,12 @@ module Web
         flash[:notice] = t('.notice')
 
         redirect_to request.referer
+      end
+
+      private
+
+      def set_bulletin
+        @bulletin = Bulletin.find(params[:id])
       end
     end
   end
