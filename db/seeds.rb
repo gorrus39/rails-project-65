@@ -25,12 +25,12 @@ users << admin
   )
 end
 
-# создание категорий ####
+# создание категорий
 category_cars = Category.find_or_create_by(name: 'машины')
 category_trees = Category.find_or_create_by(name: 'деревья')
 category_bridges = Category.find_or_create_by(name: 'мосты')
 
-# пути к картинкам в соответствии с категорией ###
+# пути к картинкам в соответствии с категорией
 car_image_paths = ['first.jpg', 'second.jpeg', 'third.png'].map do |file_path|
   Rails.root.join("test/fixtures/files/cars/#{file_path}")
 end
@@ -57,8 +57,8 @@ def make_bulletin_by(category, image_paths, users)
   sleep 1
 end
 
-# создание 300 объявлений
-100.times do
+# создание 60 объявлений
+20.times do
   make_bulletin_by(category_cars, car_image_paths, users)
   make_bulletin_by(category_trees, tree_image_paths, users)
   make_bulletin_by(category_bridges, bridge_image_paths, users)
