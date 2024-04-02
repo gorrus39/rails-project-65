@@ -56,14 +56,18 @@ class BulletinsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  #   test 'should update bulletin' do
-  #     patch bulletin_url(@bulletin),
-  #           params: { bulletin: { category_id: @bulletin.category_id,
-  #                                 description: @bulletin.description,
-  #                                 title: @bulletin.title,
-  #                                 user_id: @bulletin.user_id } }
-  #     assert_redirected_to bulletin_url(@bulletin)
-  #   end
+  test 'should update bulletin' do
+    sign_in @user
+
+    new_title = Faker::Lorem.sentence(word_count: 3)
+    patch bulletin_url(@bulletin),
+          params: { bulletin: { category_id: @bulletin.category_id,
+                                description: @bulletin.description,
+                                title: new_title,
+                                user_id: @bulletin.user_id,
+                                image: @image } }
+    assert Bulletin.find_by(title: new_title)
+  end
 
   test 'should destroy bulletin' do
     assert_difference('Bulletin.count', -1) do
