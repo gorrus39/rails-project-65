@@ -40,4 +40,7 @@ The project is a bulletin board, a simplified analogue of, for example, avito an
 
 ## Running the project locally in development mode
     make install
+
+fill .env file with github keys 
+
     rails s

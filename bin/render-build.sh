@@ -2,5 +2,5 @@
 # exit on error
 set -o errexi
 
-# make install
-make install
+# make deploy_on_render
+make on_commit

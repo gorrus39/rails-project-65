@@ -57,8 +57,8 @@ def make_bulletin_by(category, image_paths, users)
   sleep 1
 end
 
-# создание 30 объявлений
-10.times do
+# создание 300 объявлений
+100.times do
   make_bulletin_by(category_cars, car_image_paths, users)
   make_bulletin_by(category_trees, tree_image_paths, users)
   make_bulletin_by(category_bridges, bridge_image_paths, users)
