@@ -1,4 +1,5 @@
 ru:
+  add_category: Добавить категорию
   ransack:
     search: Искать
   web:
@@ -29,16 +30,30 @@ ru:
           title: Искать по названию объявления
           category: Выбрать категорию
         reset: Сброс
-      actions:
-        show: Показать
-        edit: Редактировать
-        to_moderate: На модерацию
-        archive: В архив
-        publish: Опубликовать
-        reject: Вернуть
-        confirm: 
-          archive: Подтвердить архивацию
-          to_moderate: Подтвердить отправку на модерацию
-          publish: Подтвердить публикацию
-          reject: Подтвердить возвращение
+    partials:
+      bulletin_actions:
+        edit:
+          edit: Редактировать
+        show:
+          show: Показать
+        edit:
+          edit: Редактировать
+        to_moderate:
+          to_moderate: На модерацию
+          confirm: 
+            to_moderate: Подтвердить отправку на модерацию
+        archive:
+          archive: В архив
+          confirm: 
+            archive: Подтвердить архивацию
+        publish:
+          publish: Опубликовать
+          confirm:
+            publish: Подтвердить публикацию
+        reject:
+          reject: Вернуть
+          confirm: 
+            reject: Подтвердить возвращение
+
+
       
