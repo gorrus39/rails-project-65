@@ -78,10 +78,6 @@ module Web
 
     private
 
-    def set_bulletin
-      @bulletin = Bulletin.find(params[:id])
-    end
-
     def bulletin_params
       params.require(:bulletin).permit(:title, :description, :category_id, :image)
     end

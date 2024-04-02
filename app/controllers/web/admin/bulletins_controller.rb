@@ -25,7 +25,7 @@ module Web
         @bulletin.save
         flash[:notice] = t('.notice')
 
-        redirect_to request.referer
+        redirect_to admit_root_path
       end
 
       def reject
@@ -34,7 +34,7 @@ module Web
         @bulletin.save
         flash[:notice] = t('.notice')
 
-        redirect_to request.referer
+        redirect_to admit_root_path
       end
 
       def archive
@@ -43,13 +43,7 @@ module Web
         @bulletin.save
         flash[:notice] = t('.notice')
 
-        redirect_to request.referer
-      end
-
-      private
-
-      def set_bulletin
-        @bulletin = Bulletin.find(params[:id])
+        redirect_to admit_root_path
       end
     end
   end
