@@ -64,7 +64,7 @@ module Web
       @bulletin.save
       flash[:notice] = t('.notice')
 
-      redirect_to request.referer
+      redirect_to profile_path
     end
 
     def archive
@@ -73,7 +73,7 @@ module Web
       @bulletin.save
       flash[:notice] = t('.notice')
 
-      redirect_to request.referer
+      redirect_to profile_path
     end
 
     private
