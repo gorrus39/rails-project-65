@@ -15,6 +15,7 @@ users = []
 my_email = 'gorrus100@gmail.com'
 admin = User.find_or_create_by(email: my_email)
 admin.name ||= 'Alexey '
+admin.admin = true
 admin.save
 
 users << admin
@@ -63,15 +64,3 @@ end
   make_bulletin_by(category_trees, tree_image_paths, users)
   make_bulletin_by(category_bridges, bridge_image_paths, users)
 end
-
-# вопрос. проект 3
-# gem 'kaminari'
-# сгенерировал views такой командой
-# rails g kaminari:views
-
-# появились вьюхи по такому пути app/views/kaminari с расширением .html.slim
-# на hexlet-check такие вьюхи не пропускает hexlet-check. на Render в это время проект нормально работает.
-
-# если эти вьюхи изменить в соответствии с slim-lint, то hexlet-check пропускает, локально проект нормально работает, на Render при создании объявлении приложение падает, указывая на эти вьюхи.
-
-# почему так происходит?
