@@ -25,7 +25,7 @@ module Web
         @bulletin.save
         flash[:notice] = t('.notice')
 
-        redirect_to admit_root_path
+        redirect_to admin_root_path
       end
 
       def reject
@@ -34,7 +34,7 @@ module Web
         @bulletin.save
         flash[:notice] = t('.notice')
 
-        redirect_to admit_root_path
+        redirect_to admin_root_path
       end
 
       def archive
@@ -43,7 +43,7 @@ module Web
         @bulletin.save
         flash[:notice] = t('.notice')
 
-        redirect_to admit_root_path
+        redirect_to admin_root_path
       end
     end
   end
