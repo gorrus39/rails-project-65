@@ -65,14 +65,6 @@ module Web
       assert Bulletin.find_by(title: new_title)
     end
 
-    test 'should destroy bulletin' do
-      assert_difference('Bulletin.count', -1) do
-        delete bulletin_url(@bulletin)
-      end
-
-      assert_redirected_to bulletins_url
-    end
-
     test 'should to_moderate bulletin' do
       sign_in @user
       @bulletin.image.attach(io: Rails.root.join('test/fixtures/files/first.png').open, filename: 'filename.png')

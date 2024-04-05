@@ -1,67 +1,45 @@
 # frozen_string_literal: true
 
 class BulletinPolicy < ApplicationPolicy
-  def to_moderate?
-    return false unless record.may_to_moderate? # aasm не позволяет
-    return false unless user # не залогинненый юзер
-    return false if record.user != user # объявление созданное этим юзером
-
+  def show?
     true
   end
 
-  def show?
-    return true if record.published? # опубликованное объявление
-    return true if my_bulletin
-    return true if user&.admin?
-
-    false
-  end
-
-  def publish?
-    may_publish = record.may_publish? # aasm позволяет
-    return true if may_publish && user&.admin?
-
-    false
-  end
-
-  def reject?
-    may_reject = record.may_reject? # aasm позволяет
-    return true if user&.admin? && may_reject
-
-    false
-  end
-
-  def archive?
-    may_archive = record.may_archive? # aasm позволяет
-    return true if user&.admin? && may_archive
-    return true if record.user == user # объявление созданное этим юзером
-
-    false
+  def new?
+    user
   end
 
   def edit?
-    return true if my_bulletin
-
-    false
+    record_author?
   end
 
   def update?
     edit?
   end
 
-  def new?
-    return true if user
-
-    false
-  end
-
   def create?
     new?
   end
 
+  def to_moderate?
+    record_author?
+  end
+
+  def publish?
+    user&.admin?
+  end
+
+  def reject?
+    user&.admin?
+  end
+
+  def archive?
+    record_author? || user&.admin?
+  end
+
   private
 
-  def my_bulletin
-    record.user == user # объявление созданное этим юзером
+  def record_author?
+    record.user == user
   end
 end

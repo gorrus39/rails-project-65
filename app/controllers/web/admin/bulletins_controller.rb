@@ -21,28 +21,37 @@ module Web
 
       def publish
         authorize @bulletin
-        @bulletin.publish
-        @bulletin.save
-        flash[:notice] = t('.notice')
-
+        if @bulletin.may_publish?
+          @bulletin.publish
+          @bulletin.save
+          flash[:notice] = t('.notice')
+        else
+          flash[:alert] = t('.alert')
+        end
         redirect_to admin_root_path
       end
 
       def reject
         authorize @bulletin
-        @bulletin.reject
-        @bulletin.save
-        flash[:notice] = t('.notice')
-
+        if @bulletin.may_reject?
+          @bulletin.reject
+          @bulletin.save
+          flash[:notice] = t('.notice')
+        else
+          flash[:alert] = t('.alert')
+        end
         redirect_to admin_root_path
       end
 
       def archive
         authorize @bulletin
-        @bulletin.archive
-        @bulletin.save
-        flash[:notice] = t('.notice')
-
+        if @bulletin.may_archive?
+          @bulletin.archive
+          @bulletin.save
+          flash[:notice] = t('.notice')
+        else
+          flash[:alert] = t('.alert')
+        end
         redirect_to admin_root_path
       end
     end

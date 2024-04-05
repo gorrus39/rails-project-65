@@ -2,7 +2,7 @@
 
 module Web
   class BulletinsController < Web::ApplicationController
-    before_action :set_bulletin, only: %i[show edit update destroy archive to_moderate]
+    before_action :set_bulletin, only: %i[show edit update archive to_moderate]
     after_action :verify_authorized, only: %i[show new create edit update archive to_moderate]
 
     def index
@@ -53,26 +53,27 @@ module Web
       end
     end
 
-    def destroy
-      @bulletin.destroy!
-      redirect_to bulletins_url, notice: t('.notice')
-    end
-
     def to_moderate
       authorize @bulletin
-      @bulletin.to_moderate
-      @bulletin.save
-      flash[:notice] = t('.notice')
-
+      if @bulletin.may_to_moderate?
+        @bulletin.to_moderate
+        @bulletin.save
+        flash[:notice] = t('.notice')
+      else
+        flash[:alert] = t('.alert')
+      end
       redirect_to profile_path
     end
 
     def archive
       authorize @bulletin
-      @bulletin.archive
-      @bulletin.save
-      flash[:notice] = t('.notice')
-
+      if @bulletin.may_archive?
+        @bulletin.archive
+        @bulletin.save
+        flash[:notice] = t('.notice')
+      else
+        flash[:alert] = t('.alert')
+      end
       redirect_to profile_path
     end
 
