@@ -6,10 +6,14 @@
 #
 #  id         :integer          not null, primary key
 #  admin      :boolean          default(FALSE), not null
-#  email      :string
+#  email      :string           not null
 #  name       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#
+# Indexes
+#
+#  index_users_on_email  (email) UNIQUE
 #
 require 'test_helper'
 
