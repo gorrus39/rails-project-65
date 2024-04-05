@@ -30,15 +30,13 @@ class Bulletin < ApplicationRecord
 
   has_one_attached :image
 
-  validates :title, :description, presence: true
+  validates :title, presence: true
   validates :title, length: { maximum: 50 }
+  validates :description, presence: true
   validates :description, length: { maximum: 1000 }
   validates :image, attached: true,
                     content_type: %i[png jpg jpeg],
                     size: { less_than: 5.megabytes }
-
-  scope :under_moderation, -> { where(state: :under_moderation) }
-  scope :published, -> { where(state: :published) }
 
   aasm column: :state do
     state :draft, initial: true
@@ -49,10 +47,7 @@ class Bulletin < ApplicationRecord
     end
 
     event :archive do
-      transitions from: :draft, to: :archived
-      transitions from: :under_moderation, to: :archived
-      transitions from: :published, to: :archived
-      transitions from: :rejected, to: :archived
+      transitions from: %i[draft under_moderation published rejected], to: :archived
     end
 
     event :publish do

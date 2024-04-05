@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
 
   def check_admin
     raise 'only for loggined users' unless current_user
-    raise 'only for admin' unless current_user.admin?
+    raise 'only for admin' unless current_user&.admin?
   end
 
   def check_current_user

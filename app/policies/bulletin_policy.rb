@@ -12,28 +12,28 @@ class BulletinPolicy < ApplicationPolicy
   def show?
     return true if record.published? # опубликованное объявление
     return true if my_bulletin
-    return true if user.admin?
+    return true if user&.admin?
 
     false
   end
 
   def publish?
     may_publish = record.may_publish? # aasm позволяет
-    return true if may_publish && user.admin?
+    return true if may_publish && user&.admin?
 
     false
   end
 
   def reject?
     may_reject = record.may_reject? # aasm позволяет
-    return true if user.admin? && may_reject
+    return true if user&.admin? && may_reject
 
     false
   end
 
   def archive?
     may_archive = record.may_archive? # aasm позволяет
-    return true if user.admin? && may_archive
+    return true if user&.admin? && may_archive
     return true if record.user == user # объявление созданное этим юзером
 
     false
