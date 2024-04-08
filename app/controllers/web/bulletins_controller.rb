@@ -56,8 +56,7 @@ module Web
     def to_moderate
       authorize @bulletin
       if @bulletin.may_to_moderate?
-        @bulletin.to_moderate
-        @bulletin.save
+        @bulletin.to_moderate!
         flash[:notice] = t('.notice')
       else
         flash[:alert] = t('.alert')
@@ -68,8 +67,7 @@ module Web
     def archive
       authorize @bulletin
       if @bulletin.may_archive?
-        @bulletin.archive
-        @bulletin.save
+        @bulletin.archive!
         flash[:notice] = t('.notice')
       else
         flash[:alert] = t('.alert')

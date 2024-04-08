@@ -16,8 +16,7 @@ module Web
       def publish
         authorize @bulletin
         if @bulletin.may_publish?
-          @bulletin.publish
-          @bulletin.save
+          @bulletin.publish!
           flash[:notice] = t('.notice')
         else
           flash[:alert] = t('.alert')
@@ -28,8 +27,7 @@ module Web
       def reject
         authorize @bulletin
         if @bulletin.may_reject?
-          @bulletin.reject
-          @bulletin.save
+          @bulletin.reject!
           flash[:notice] = t('.notice')
         else
           flash[:alert] = t('.alert')
@@ -40,8 +38,7 @@ module Web
       def archive
         authorize @bulletin
         if @bulletin.may_archive?
-          @bulletin.archive
-          @bulletin.save
+          @bulletin.archive!
           flash[:notice] = t('.notice')
         else
           flash[:alert] = t('.alert')
