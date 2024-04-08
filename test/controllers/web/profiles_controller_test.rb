@@ -14,9 +14,9 @@ module Web
     end
 
     test 'should NOT get show' do
-      assert_raises(
-        RuntimeError
-      ) { get profile_url }
+      get profile_url
+
+      assert_redirected_to root_path
     end
   end
 end

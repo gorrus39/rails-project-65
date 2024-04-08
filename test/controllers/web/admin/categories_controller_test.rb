@@ -7,6 +7,7 @@ module Web
         @user = users(:one)
         @admin = users(:admin)
         @category = categories(:one)
+        @category_without_bulletins = categories(:without_bulletins)
       end
 
       test 'should get index' do
@@ -17,9 +18,9 @@ module Web
 
       test 'should NOT get index' do
         sign_in @user
-        assert_raises(Exception) do
-          get admin_categories_url
-        end
+        get admin_categories_url
+
+        assert_redirected_to root_path
       end
       test 'should get new' do
         sign_in @admin
@@ -54,12 +55,20 @@ module Web
         assert Category.find_by(name:)
       end
 
-      test 'should destroy category' do
+      test 'should destroy category without bulletins' do
+        sign_in @admin
+        id = @category_without_bulletins.id
+        delete admin_category_url(@category_without_bulletins)
+
+        assert_nil Category.find_by(id:)
+      end
+
+      test 'should NOT destroy category with bulletins' do
         sign_in @admin
         id = @category.id
         delete admin_category_url(@category)
 
-        assert_nil Category.find_by(id:)
+        assert Category.find_by(id:)
       end
     end
   end

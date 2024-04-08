@@ -85,12 +85,16 @@ module Web
 
     test 'should NOT to_moderate bulletin' do
       @bulletin.image.attach(io: Rails.root.join('test/fixtures/files/first.png').open, filename: 'filename.png')
-      assert_raises(Exception) { patch to_moderate_bulletin_url(@bulletin) }
+
+      patch to_moderate_bulletin_url(@bulletin)
+      assert_redirected_to root_path
     end
 
     test 'should NOT archive bulletin' do
       @bulletin.image.attach(io: Rails.root.join('test/fixtures/files/first.png').open, filename: 'filename.png')
-      assert_raises(Exception) { patch archive_bulletin_url(@bulletin) }
+      patch archive_bulletin_url(@bulletin)
+
+      assert_redirected_to root_path
     end
   end
 end

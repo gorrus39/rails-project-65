@@ -19,9 +19,9 @@ module Web
       end
       test 'should NOT get index' do
         sign_in @user
-        assert_raises(
-          Exception
-        ) { get admin_root_url }
+        get admin_root_url
+
+        assert_redirected_to root_path
       end
 
       test 'shold get under_moderation bulletins' do
@@ -39,7 +39,9 @@ module Web
 
       test 'should NOT publish bulletin' do
         attach_file_to(@bulletin_under_moderation)
-        assert_raises(Exception) { patch publish_admin_bulletin_url(@bulletin_under_moderation) }
+        patch publish_admin_bulletin_url(@bulletin_under_moderation)
+
+        assert_redirected_to root_path
       end
 
       test 'should reject bulletin' do
@@ -51,7 +53,9 @@ module Web
 
       test 'should NOT reject bulletin' do
         attach_file_to(@bulletin_under_moderation)
-        assert_raises(Exception) { patch reject_admin_bulletin_url(@bulletin_under_moderation) }
+        patch reject_admin_bulletin_url(@bulletin_under_moderation)
+
+        assert_redirected_to root_path
       end
 
       test 'should archive bulletin' do
@@ -63,7 +67,9 @@ module Web
 
       test 'should NOT archive bulletin' do
         attach_file_to(@bulletin)
-        assert_raises(Exception) { patch archive_admin_bulletin_url(@bulletin) }
+        patch archive_admin_bulletin_url(@bulletin)
+
+        assert_redirected_to root_path
       end
 
       def attach_file_to(bulletin)

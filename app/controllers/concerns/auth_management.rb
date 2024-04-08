@@ -20,5 +20,14 @@ module AuthManagement
 
       redirect_to root_path, notice: t('.notice')
     end
+
+    rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
+    private
+
+    def user_not_authorized
+      flash[:alert] = t('.alert')
+      redirect_back(fallback_location: root_path)
+    end
   end
 end
