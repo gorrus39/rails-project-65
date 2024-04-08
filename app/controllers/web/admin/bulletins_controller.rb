@@ -45,6 +45,12 @@ module Web
         end
         redirect_to admin_root_path
       end
+
+      private
+
+      def set_bulletin
+        @bulletin = Bulletin.find(params[:id])
+      end
     end
   end
 end
