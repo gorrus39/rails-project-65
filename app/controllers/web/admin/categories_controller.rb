@@ -36,8 +36,13 @@ module Web
       end
 
       def destroy
-        @category.destroy!
-        redirect_to admin_categories_url, notice: t('.notice')
+        if @category.bulletins.any?
+          flash[:alert] = t('.alert')
+        else
+          @category.destroy!
+          flash[:notice] = t('.notice')
+        end
+        redirect_to admin_categories_url
       end
 
       private
