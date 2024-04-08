@@ -6,14 +6,8 @@ module Web
       before_action :set_bulletin, only: %i[publish reject archive]
       after_action :verify_authorized, only: %i[publish reject archive]
 
-      def under_moderation
-        @bulletins = Bulletin
-                     .under_moderation
-                     .page(params[:page])
-      end
-
       def index
-        @q = Bulletin.ransack(params[:q])
+        @q = Bulletin.send(params[:filter]).ransack(params[:q])
         @bulletins = @q
                      .result
                      .page(params[:page])

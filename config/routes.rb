@@ -14,9 +14,9 @@ Rails.application.routes.draw do
     resource :profile, only: %i[show]
 
     namespace :admin do
-      root 'bulletins#under_moderation'
+      root 'bulletins#index', filter: :under_moderation
 
-      resources :bulletins, only: %i[index] do
+      resources :bulletins, only: %i[index], filter: :all do
         member do
           patch :publish
           patch :reject

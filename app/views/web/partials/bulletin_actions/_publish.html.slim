@@ -1,4 +1,4 @@
 - if policy(bulletin).publish? && bulletin.may_publish?
   = link_to t('.publish'), to_path,
-    data: { turbo_method: :post, turbo_confirm: t('.confirm.publish') },
+    data: { turbo_method: :patch, turbo_confirm: t('.confirm.publish') },
     class: 'me-2'
