@@ -8,7 +8,7 @@ install:          prepare_dependencies make_env_file prepare_db_local prepare_as
 
 deploy_on_render: prepare_dependencies  prepare_db_for_render prepare_assets 
 
-on_commit:        prepare_dependencies mirgate_db clear_db prepare_assets 
+on_commit:        prepare_dependencies mirgate_db clear_db db_seed prepare_assets 
 # on_commit:	   dev_command 
 
 dev_command:
