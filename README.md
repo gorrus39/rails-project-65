@@ -18,7 +18,7 @@ The project is a bulletin board, a simplified analogue of, for example, avito an
     - publish, reject advertisements sent for moderation
     - send any advertisements to the archive
 
-## The project works at [link](https://rails-project-65-qkap.onrender.com)
+## The project works at [link](https://rails-project-65-2npi.onrender.com/)
 ## Sample project works at [link](https://rails-bulletin-board-ru.hexlet.app)
 
 

@@ -7,7 +7,7 @@ module Web
       after_action :verify_authorized, only: %i[publish reject archive]
 
       def index
-        @q = Bulletin.send(params[:filter]).ransack(params[:q])
+        @q = Bulletin.send(params[:filter]).includes(:user).ransack(params[:q])
         @bulletins = @q
                      .result
                      .page(params[:page])

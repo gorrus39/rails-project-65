@@ -1,11 +1,15 @@
-= render 'web/partials/bulletin_actions/show',
-  bulletin:, to_path: bulletin
+= link_to t('.show'), bulletin,
+  class: 'me-2'
 
-= render 'web/partials/bulletin_actions/edit',
-  bulletin:, to_path: edit_bulletin_path(bulletin)
+= link_to t('.edit'), edit_bulletin_path(bulletin),
+  class: 'me-2'
 
-= render 'web/partials/bulletin_actions/to_moderate',
-  bulletin:, to_path: to_moderate_bulletin_path(bulletin)
+- if bulletin.may_to_moderate?
+  = link_to t('.to_moderate'), to_moderate_bulletin_path(bulletin),
+    data: { turbo_method: :patch, turbo_confirm: t('.confirm.to_moderate') },
+    class: 'me-2'
 
-= render 'web/partials/bulletin_actions/archive',
-  bulletin:, to_path: archive_bulletin_path(bulletin)
+-if bulletin.may_archive?
+  = link_to t('.archive'), archive_bulletin_path(bulletin),
+    data: { turbo_method: :patch, turbo_confirm: t('.confirm.archive') },
+    class: 'text-danger'

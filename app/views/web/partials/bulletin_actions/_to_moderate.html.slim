@@ -1,4 +1,0 @@
-- if policy(bulletin).to_moderate? && bulletin.may_to_moderate?
-  = link_to t('.to_moderate'), to_path,
-    data: { turbo_method: :patch, turbo_confirm: t('.confirm.to_moderate') },
-    class: 'me-2'

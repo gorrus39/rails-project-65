@@ -22,8 +22,8 @@
               admin_root_path,
               class: 'nav-link text-dark'
         li.nav-item.me-2
-          = button_to t('.log_out'),
-            auth_log_out_path,
+          = button_to t('.logout'),
+            auth_logout_path,
             data: { turbo: false },
             class: 'nav-link text-dark'
       - else

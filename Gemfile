@@ -104,7 +104,7 @@ gem 'simple_form', '~> 5.3'
 
 gem 'active_storage_validations', '~> 1.1'
 
-# gem 'i18n-debug', '~> 1.2'
+gem 'i18n-debug', '~> 1.2'
 
 gem 'rails-i18n', '~> 7.0'
 

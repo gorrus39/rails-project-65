@@ -1,4 +1,0 @@
-- if policy(bulletin).reject? && bulletin.may_reject?
-  = link_to t('.reject'), to_path,
-    data: { turbo_method: :patch, turbo_confirm: t('.confirm.reject') },
-    class: 'me-2'

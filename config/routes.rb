@@ -26,7 +26,7 @@ Rails.application.routes.draw do
       resources :categories, only: %i[index new create edit update destroy]
     end
     scope :auth, module: :auth do
-      post :log_out, action: :log_out, as: :auth_log_out
+      post :logout, action: :logout, as: :auth_logout
       post ':provider', action: :request, as: :auth_request
       get ':provider/callback', action: :callback, as: :callback_auth
     end
