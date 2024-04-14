@@ -12,6 +12,7 @@ ru:
         add_bulletin: Добавить
         admin_panel: Админка
         logout: Выйти
+        to_main_page: Главная
   web:
     bulletins:
       index:
@@ -91,6 +92,7 @@ ru:
           cell_state: Состояние
           cell_created_at: Дата создания
           cell_actions: Действия
+          notice: Эта секция доступна только для администраторов
           state:
             draft: Черновик
             under_moderation: На модерации
